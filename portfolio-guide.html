@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>포트폴리오 사용 가이드 — 주은이를 위한 안내서</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FBF8F3;
+    --warm: #F5EFE6;
+    --ink: #1C1812;
+    --dust: #8C7B6B;
+    --terra: #C4714A;
+    --sage: #7A9E7E;
+    --gold: #C9A84C;
+    --pale: #F0E6CC;
+    --blue: #4A7FA5;
+    --border: rgba(28,24,18,0.1);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--ink);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg,
+      rgba(201,168,76,0.05) 0px, rgba(201,168,76,0.05) 1px,
+      transparent 1px, transparent 18px),
+    repeating-linear-gradient(-45deg,
+      rgba(201,168,76,0.05) 0px, rgba(201,168,76,0.05) 1px,
+      transparent 1px, transparent 18px);
+  }
+  .header-emoji { font-size: 2.5rem; display: block; margin-bottom: 16px; position: relative; }
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 400;
+    color: #fff; position: relative;
+    margin-bottom: 10px;
+  }
+  .header p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem; position: relative;
+    letter-spacing: 0.05em;
+  }
+  .header .url-badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 24px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 100px;
+    color: var(--gold);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    position: relative;
+  }
+
+  /* CONTENTS */
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* TOC */
+  .toc {
+    background: var(--warm);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin: 40px 0;
+  }
+  .toc-title {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--terra); margin-bottom: 16px; font-weight: 500;
+  }
+  .toc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .toc-list a {
+    color: var(--dust); text-decoration: none; font-size: 0.9rem;
+    display: flex; align-items: center; gap: 10px;
+    transition: color 0.2s;
+  }
+  .toc-list a:hover { color: var(--terra); }
+  .toc-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--ink); color: #fff;
+    font-size: 0.7rem; font-weight: 500; flex-shrink: 0;
+  }
+
+  /* SECTION */
+  .section { margin-top: 56px; }
+  .section-header {
+    display: flex; align-items: center; gap: 14px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ink);
+    margin-bottom: 28px;
+  }
+  .section-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--terra); color: #fff;
+    font-size: 0.9rem; font-weight: 700; flex-shrink: 0;
+  }
+  .section-num.blue { background: var(--blue); }
+  .section-num.sage { background: var(--sage); }
+  .section-num.gold { background: var(--gold); }
+  .section-title { font-size: 1.25rem; font-weight: 700; }
+  .section-sub { font-size: 0.8rem; color: var(--dust); margin-top: 2px; }
+
+  /* STEP CARD */
+  .step {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .step::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; background: var(--terra);
+  }
+  .step.blue::before { background: var(--blue); }
+  .step.sage::before { background: var(--sage); }
+  .step.gold::before { background: var(--gold); }
+
+  .step-label {
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--terra); font-weight: 500; margin-bottom: 6px;
+  }
+  .step.blue .step-label { color: var(--blue); }
+  .step.sage .step-label { color: var(--sage); }
+  .step.gold .step-label { color: var(--gold); }
+
+  .step-title { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+  .step p { font-size: 0.88rem; color: var(--dust); line-height: 1.75; }
+  .step p + p { margin-top: 8px; }
+
+  /* CODE / URL BOX */
+  .code-box {
+    background: var(--ink);
+    color: #A8D8A8;
+    padding: 14px 20px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.88rem;
+    margin: 12px 0;
+    word-break: break-all;
+    letter-spacing: 0.03em;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: var(--pale);
+    border-left: 3px solid var(--gold);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    margin: 12px 0;
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+  .highlight strong { color: var(--ink); font-weight: 700; }
+
+  .warn {
+    background: #FFF3F0;
+    border-left: 3px solid var(--terra);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    margin: 12px 0;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #8B3A20;
+  }
+
+  .good {
+    background: #F0F8F0;
+    border-left: 3px solid var(--sage);
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    margin: 12px 0;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #2D5E32;
+  }
+
+  /* NUMBERED STEPS INSIDE */
+  .mini-steps { margin: 12px 0; display: flex; flex-direction: column; gap: 8px; }
+  .mini-step {
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .mini-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--warm); border: 1px solid var(--border);
+    font-size: 0.72rem; font-weight: 700; flex-shrink: 0;
+    color: var(--ink); margin-top: 1px;
+  }
+  .mini-text { font-size: 0.86rem; color: var(--dust); line-height: 1.65; }
+  .mini-text strong { color: var(--ink); }
+
+  /* BUTTON MOCKUP */
+  .btn-mock {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #2DA44E;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: monospace;
+    letter-spacing: 0.02em;
+  }
+  .btn-mock.gray {
+    background: var(--warm);
+    color: var(--ink);
+    border: 1px solid var(--border);
+  }
+
+  /* TEMPLATE COPY BOX */
+  .template-box {
+    background: #F8F9FA;
+    border: 1px dashed #CCC;
+    border-radius: 4px;
+    padding: 20px;
+    margin: 16px 0;
+    font-size: 0.78rem;
+    font-family: 'Courier New', monospace;
+    line-height: 1.8;
+    color: #444;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .template-label {
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--sage); font-weight: 700; margin-bottom: 8px;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+  .checklist li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 0.87rem; color: var(--dust);
+  }
+  .checklist li::before {
+    content: '☐';
+    font-size: 1rem; flex-shrink: 0;
+    color: var(--terra); line-height: 1.4;
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px; background: var(--border);
+    margin: 48px 0;
+  }
+
+  /* FINAL CARD */
+  .final-card {
+    background: var(--ink);
+    color: #fff;
+    padding: 40px 36px;
+    text-align: center;
+    margin-top: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg,
+      rgba(201,168,76,0.04) 0px, rgba(201,168,76,0.04) 1px,
+      transparent 1px, transparent 18px);
+  }
+  .final-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 400;
+    margin-bottom: 12px; position: relative;
+  }
+  .final-card p {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.85rem; position: relative;
+    max-width: 400px; margin: 0 auto; line-height: 1.8;
+  }
+  .final-url {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 28px;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 0.9rem;
+    border-radius: 100px;
+    position: relative;
+    letter-spacing: 0.03em;
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 40px 24px; }
+    .header h1 { font-size: 1.5rem; }
+    .step { padding: 20px; }
+    .template-box { font-size: 0.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-emoji">🌿</span>
+  <h1>포트폴리오 사용 가이드</h1>
+  <p>주은이를 위한 단계별 안내서 · 처음 하는 사람도 혼자 할 수 있어요</p>
+  <div class="url-badge">🔗 https://jueun-in-laos.github.io</div>
+</div>
+
+<div class="container">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">📋 이 가이드에서 배울 것들</div>
+    <ul class="toc-list">
+      <li><a href="#s1"><span class="toc-num">1</span> 포트폴리오 사이트 접속하는 법</a></li>
+      <li><a href="#s2"><span class="toc-num">2</span> GitHub 로그인하는 법</a></li>
+      <li><a href="#s3"><span class="toc-num">3</span> 봉사 일지 새로 추가하는 법</a></li>
+      <li><a href="#s4"><span class="toc-num">4</span> 내 이름·소개 수정하는 법</a></li>
+      <li><a href="#s5"><span class="toc-num">5</span> 수업 후 매주 할 일 체크리스트</a></li>
+    </ul>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div>
+        <div class="section-title">포트폴리오 사이트 접속하기</div>
+        <div class="section-sub">로그인 없이 누구나 볼 수 있어요</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">접속 방법</div>
+      <div class="step-title">브라우저 주소창에 입력하기</div>
+      <p>크롬, 엣지, 사파리 등 어떤 브라우저든 괜찮아요. 주소창에 아래 주소를 입력하고 Enter를 누르세요.</p>
+      <div class="code-box">https://jueun-in-laos.github.io</div>
+      <div class="good">✅ 이 주소를 즐겨찾기에 저장해 두면 편해요! 브라우저에서 별표(★) 아이콘을 누르면 저장됩니다.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">확인</div>
+      <div class="step-title">이런 화면이 나오면 성공!</div>
+      <p>라오스를 배경으로 한 예쁜 포트폴리오 화면이 나타나면 정상입니다. 스크롤을 내리면 About, Volunteer Log, Artwork 섹션을 볼 수 있어요.</p>
+      <div class="highlight"><strong>📱 폰에서도 접속 가능해요!</strong> 주소를 그대로 입력하면 모바일에서도 잘 보입니다.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num blue">2</div>
+      <div>
+        <div class="section-title">GitHub 로그인하기</div>
+        <div class="section-sub">수정하려면 로그인이 필요해요</div>
+      </div>
+    </div>
+
+    <div class="step blue">
+      <div class="step-label">Step 1</div>
+      <div class="step-title">github.com 접속</div>
+      <p>새 탭을 열고 아래 주소로 이동하세요.</p>
+      <div class="code-box">https://github.com</div>
+    </div>
+
+    <div class="step blue">
+      <div class="step-label">Step 2</div>
+      <div class="step-title">Sign in 클릭</div>
+      <p>오른쪽 위에 <strong>Sign in</strong> 버튼을 클릭하세요.</p>
+      <div class="mini-steps">
+        <div class="mini-step">
+          <div class="mini-num">①</div>
+          <div class="mini-text"><strong>Username or email address</strong> 칸에 가입할 때 쓴 이메일 또는 아이디 입력</div>
+        </div>
+        <div class="mini-step">
+          <div class="mini-num">②</div>
+          <div class="mini-text"><strong>Password</strong> 칸에 비밀번호 입력</div>
+        </div>
+        <div class="mini-step">
+          <div class="mini-num">③</div>
+          <div class="mini-text">초록색 <span class="btn-mock">Sign in</span> 버튼 클릭</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step blue">
+      <div class="step-label">Step 3</div>
+      <div class="step-title">저장소(내 파일함) 열기</div>
+      <p>로그인 후 아래 주소로 바로 이동하면 내 파일함이 열려요.</p>
+      <div class="code-box">https://github.com/jueun-in-laos/jueun-in-laos.github.io</div>
+      <p>또는 오른쪽 위 프로필 아이콘 → <strong>Your repositories</strong> → <strong>jueun-in-laos.github.io</strong> 클릭</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num sage">3</div>
+      <div>
+        <div class="section-title">봉사 일지 새로 추가하기</div>
+        <div class="section-sub">수업 후 매주 이 방법으로 기록해요</div>
+      </div>
+    </div>
+
+    <div class="step sage">
+      <div class="step-label">Step 1</div>
+      <div class="step-title">index.html 파일 열기</div>
+      <div class="mini-steps">
+        <div class="mini-step">
+          <div class="mini-num">①</div>
+          <div class="mini-text">저장소 화면에서 <strong>index.html</strong> 파일 이름 클릭</div>
+        </div>
+        <div class="mini-step">
+          <div class="mini-num">②</div>
+          <div class="mini-text">파일 내용이 보이면 오른쪽 위 <strong>연필 ✏️ 아이콘</strong> 클릭</div>
+        </div>
+        <div class="mini-step">
+          <div class="mini-num">③</div>
+          <div class="mini-text">긴 코드가 보이는 수정 화면이 열립니다</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step sage">
+      <div class="step-label">Step 2</div>
+      <div class="step-title">붙여넣기 위치 찾기</div>
+      <p>키보드에서 <strong>Ctrl + F</strong> (Mac은 Cmd + F) 를 누르면 검색창이 열립니다. 아래 글자를 복사해서 검색창에 붙여넣기 하세요.</p>
+      <div class="code-box">&lt;!-- 새 일지는 여기 위에 붙여넣기 --&gt;</div>
+      <p>이 부분을 찾으면, <strong>바로 위 줄</strong>에 새 일지를 붙여넣으면 됩니다.</p>
+    </div>
+
+    <div class="step sage">
+      <div class="step-label">Step 3</div>
+      <div class="step-title">아래 템플릿 복사해서 붙여넣기</div>
+      <p>아래 전체를 복사한 후, 찾은 위치 바로 위에 붙여넣기 하세요. 그 다음 <span style="color:var(--terra)">빨간 글씨 부분</span>만 내 내용으로 바꾸면 됩니다.</p>
+
+      <div class="template-label">✂ 복사해서 사용할 템플릿</div>
+      <div class="template-box">&lt;div class="entry"&gt;
+  &lt;div class="entry-date"&gt;2025년 2월 X일 · Week X&lt;/div&gt;
+  &lt;div class="entry-card"&gt;
+    &lt;div class="entry-title"&gt;수업 제목 (예: Week 2 — 모음 복습)&lt;/div&gt;
+    &lt;div class="entry-body"&gt;
+      오늘 배운 내용과 학생들 반응을 여기에 씁니다.
+    &lt;/div&gt;
+    &lt;div class="entry-meta"&gt;
+      &lt;span class="meta-chip"&gt;📍 유치원 이름, Vientiane&lt;/span&gt;
+      &lt;span class="meta-chip"&gt;⏱ 1시간&lt;/span&gt;
+      &lt;span class="meta-chip green"&gt;👤 보조 역할&lt;/span&gt;
+      &lt;span class="meta-chip"&gt;👧 12명&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="entry-reflection"&gt;
+      오늘 느낀 점을 솔직하게 씁니다.
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+      <div class="highlight">
+        <strong>💡 바꿔야 할 부분:</strong><br>
+        · <strong>2025년 2월 X일 · Week X</strong> → 실제 날짜로<br>
+        · <strong>수업 제목</strong> → 그날 배운 내용 제목<br>
+        · <strong>오늘 배운 내용…</strong> → 실제 수업 내용<br>
+        · <strong>보조 역할</strong> → 4월 이후에는 "단독 수업"으로 변경<br>
+        · <strong>오늘 느낀 점…</strong> → 진심 어린 소감 (이게 제일 중요해요!)
+      </div>
+    </div>
+
+    <div class="step sage">
+      <div class="step-label">Step 4</div>
+      <div class="step-title">저장하기 (Commit changes)</div>
+      <div class="mini-steps">
+        <div class="mini-step">
+          <div class="mini-num">①</div>
+          <div class="mini-text">화면 오른쪽 위 초록색 <span class="btn-mock">Commit changes</span> 버튼 클릭</div>
+        </div>
+        <div class="mini-step">
+          <div class="mini-num">②</div>
+          <div class="mini-text">팝업창이 뜨면 다시 <span class="btn-mock">Commit changes</span> 클릭</div>
+        </div>
+        <div class="mini-step">
+          <div class="mini-num">③</div>
+          <div class="mini-text"><strong>1~2분 후</strong> 포트폴리오 사이트를 새로고침하면 새 일지가 나타납니다!</div>
+        </div>
+      </div>
+      <div class="good">✅ 저장 완료! 이제 전 세계 누구든 내 포트폴리오에서 새 일지를 볼 수 있어요.</div>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num gold">4</div>
+      <div>
+        <div class="section-title">내 이름·소개 수정하기</div>
+        <div class="section-sub">처음 한 번만 바꿔두면 돼요</div>
+      </div>
+    </div>
+
+    <div class="step gold">
+      <div class="step-label">바꿔야 할 것들</div>
+      <div class="step-title">현재 [Your Name]으로 되어 있는 부분들</div>
+      <p>index.html 파일을 열고 (연필 ✏️ 클릭) Ctrl+F 로 아래 내용을 찾아서 바꾸세요.</p>
+
+      <div class="mini-steps">
+        <div class="mini-step">
+          <div class="mini-num">①</div>
+          <div class="mini-text">
+            <strong>[Your Name]'s Portfolio</strong><br>
+            → 예) "Jueun's Portfolio" 로 변경
+          </div>
+        </div>
+        <div class="mini-step">
+          <div class="mini-num">②</div>
+          <div class="mini-text">
+            <strong>[Your Name]</strong> (Footer에 있는 것)<br>
+            → 이름으로 변경
+          </div>
+        </div>
+        <div class="mini-step">
+          <div class="mini-num">③</div>
+          <div class="mini-text">
+            <strong>your@email.com</strong><br>
+            → 실제 이메일 주소로 변경
+          </div>
+        </div>
+        <div class="mini-step">
+          <div class="mini-num">④</div>
+          <div class="mini-text">
+            <strong>Hero 섹션 소개글</strong> — "Artist · Educator · Missionary Kid" 부분을 내 스타일로 수정
+          </div>
+        </div>
+      </div>
+
+      <div class="warn">⚠️ 수정할 때 꺽쇠괄호 &lt; &gt; 나 따옴표 " " 는 절대 지우지 마세요. 텍스트 내용만 바꾸면 돼요!</div>
+    </div>
+
+    <div class="step gold">
+      <div class="step-label">숫자 업데이트</div>
+      <div class="step-title">About 섹션 통계 숫자 바꾸기</div>
+      <p>봉사 시간이 쌓일 때마다 숫자를 업데이트 해주세요.</p>
+      <div class="code-box">50+ → 실제 누적 봉사 시간으로 변경</div>
+      <p>예를 들어 10주 봉사 후에는 <strong>10+</strong>, 학기 끝나면 <strong>40+</strong> 이런 식으로요.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div>
+        <div class="section-title">수업 후 매주 할 일</div>
+        <div class="section-sub">이것만 꾸준히 하면 완벽한 포트폴리오가 완성돼요</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">수업 당일 (수업 직후 30분 이내)</div>
+      <div class="step-title">✍️ 메모 먼저 해두기</div>
+      <p>수업이 끝나자마자 폰 메모장에 아래 3가지를 한국어로 적어두세요. 나중에 기억이 흐려지기 전에 기록하는 게 중요해요!</p>
+      <div class="mini-steps">
+        <div class="mini-step"><div class="mini-num">①</div><div class="mini-text"><strong>오늘 뭘 가르쳤나?</strong> (예: ㄱ,ㄴ,ㄷ 자음 카드 게임)</div></div>
+        <div class="mini-step"><div class="mini-num">②</div><div class="mini-text"><strong>학생들 반응은?</strong> (예: 처음에 어색해했지만 게임 시작하자 활발해짐)</div></div>
+        <div class="mini-step"><div class="mini-num">③</div><div class="mini-text"><strong>내가 느낀 것은?</strong> (예: 가르치는 게 이렇게 보람있을 줄 몰랐다)</div></div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">수업 후 2~3일 이내</div>
+      <div class="step-title">💻 포트폴리오에 일지 올리기</div>
+      <ul class="checklist">
+        <li>GitHub 로그인</li>
+        <li>index.html 파일 열기 (연필 아이콘)</li>
+        <li>템플릿 복사해서 붙여넣기</li>
+        <li>메모해 둔 내용 채워넣기</li>
+        <li>Commit changes 저장</li>
+        <li>포트폴리오 접속해서 잘 올라왔는지 확인</li>
+      </ul>
+    </div>
+
+    <div class="step">
+      <div class="step-label">4월 이후 — 단독 수업 시작</div>
+      <div class="step-title">🌟 역할 표기 바꾸기</div>
+      <p>4월부터 혼자 수업하게 되면 템플릿에서 역할을 바꿔주세요.</p>
+      <div class="code-box">👤 보조 역할  →  👤 단독 수업 (Lead Teacher)</div>
+      <div class="highlight"><strong>이 변화가 대학 입학 사정관에게 중요합니다!</strong> "처음엔 보조로 시작해서 스스로 이끌게 됐다"는 성장 스토리가 강력한 에세이 소재가 돼요.</div>
+    </div>
+
+    <div class="step">
+      <div class="step-label">한 학기 마무리 시점 (4월 말)</div>
+      <div class="step-title">📊 통계 업데이트</div>
+      <ul class="checklist">
+        <li>About 섹션 봉사 시간 숫자 업데이트</li>
+        <li>총 학생 수 업데이트</li>
+        <li>가르친 내용 정리 (자모음, 숫자, 인사말 등)</li>
+        <li>사진이 있다면 갤러리에 추가</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TIPS -->
+  <div class="step">
+    <div class="step-label">💡 중요한 팁</div>
+    <div class="step-title">Reflection(소감) 이 가장 중요해요</div>
+    <p>입학 사정관은 <strong>"무엇을 했나"</strong> 보다 <strong>"그 경험이 너를 어떻게 바꿨나"</strong>를 더 궁금해 해요.</p>
+    <div class="mini-steps" style="margin-top:14px">
+      <div class="mini-step">
+        <div class="mini-num" style="background:#EEE;color:#999">✗</div>
+        <div class="mini-text" style="color:#999">"오늘 한글 모음을 가르쳤다." (너무 단순해요)</div>
+      </div>
+      <div class="mini-step">
+        <div class="mini-num" style="background:var(--sage);color:white">✓</div>
+        <div class="mini-text">"한 아이가 자기 이름의 첫 글자를 찾아냈을 때 눈이 빛났다. 그 순간 나는 교사가 되고 싶다는 확신이 처음으로 생겼다."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL -->
+  <div class="final-card">
+    <h3>이 포트폴리오가 미래를 바꿉니다 🌏</h3>
+    <p>매주 30분의 기록이 쌓여 존슨 장학금, 베뢰아, W&L 합격의 증거가 됩니다. 꾸준히 기록하는 것 자체가 이미 리더십이에요.</p>
+    <div class="final-url">🔗 jueun-in-laos.github.io</div>
+  </div>
+
+</div>
+</body>
+</html>
